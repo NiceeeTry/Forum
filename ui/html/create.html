@@ -1,0 +1,51 @@
+{{template "base" .}}
+
+{{define "title"}}Create a New Post{{end}}
+
+{{define "main"}}
+
+<div class="create">
+<section class="p-8 md-py-10">
+    <!-- <div class="w-100pc md-w-70pc mx-auto py-10">
+    <h2 class="white fs-l2 md-fs-xl1 fw-900 lh-2">
+    Lorem ipsum dolor sit amet, <span class="border-b bc-indigo bw-4"> consectetur</span> adipiscing elit,
+    sed do eiusmod tempor </h2>
+    </div> -->
+
+    <form action='/post/create' method='POST'>
+        {{with .Form}}
+            <div>
+                <label class="white fw-800 fs-l1 mb-1">Title:</label>
+                    {{with .Errors.Get "title"}}
+                        <label class='error'>{{.}}</label>
+                    {{end}}
+                    <input type='text' name='title' value='{{.Get "title"}}'>
+            </div>
+            <div>
+                <label class="white fw-800 fs-m5">Category:</label>
+                <select name="category" class="white bg-black">
+                    <option value="Bike">Bike</option>
+                        <option value="Auto">Auto</option>
+                        <option value="Ship">Ship</option>
+                        <option value="Plane">Plane</option>
+                        <option value="Track">Track</option>
+                </select>
+                    
+            </div>
+            <div>
+                <label class="white fw-800 fs-l1 mb-1">Content:</label>
+                {{with .Errors.Get "content"}}
+                    <label class='error'>{{.}}</label>
+                {{end}}
+                <textarea name='content'>{{.Get "content"}}</textarea>
+            </div>
+            <div>
+                <!-- <input type='submit' value='Publish post'>  -->
+                <button type="submit" class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Publish post</button>
+            </div>
+        {{end}}
+    </form>
+    </section>
+</div>
+
+{{end}}

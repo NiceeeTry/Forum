@@ -1,0 +1,10 @@
+{{template "base" .}}
+{{define "title"}}Home{{end}}
+{{define "main"}}
+
+<div class="cont">
+    <h2 class="white fs-l3 fw-900 text-center">{{.ErrorM.ErrorMessage}}</h2>
+    <h2 class="white fs-l3 fw-900 text-center">{{.ErrorM.ErrorCode}}</h2>
+</div>
+
+    {{end}}

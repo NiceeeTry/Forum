@@ -1,0 +1,117 @@
+{{template "base" .}}
+{{define "title"}}Post #{{.Merge.Post.ID}}{{end}}
+{{define "main"}}
+    {{with .Merge}}
+    <div class="cont">
+    <div class='snippet'>
+        <div class='metadata'>
+            <strong>{{.Post.Title}}</strong>
+            <!-- <span>#{{.Post.ID}}</span> -->
+            <span>Created by: {{.Post.Name}}</span>
+        </div>
+        <pre><code>{{.Post.Content}}</code></pre>
+        <div class='metadata'>
+            
+            <time>Created: {{humanDate .Post.Created}}</time>
+            <time>
+                <form action="/post/like" target="_self" method="post">
+                    <div>{{.LikesNumber}}
+                        <button value="like {{.Post.ID}}" name="like" class="btn" id="green"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                        {{.DislikesNumber}}
+                        <button  value="dislike {{.Post.ID}}" name="like" class="btn" id="red"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                    </div>
+                </form>
+            </time>
+              
+            
+            
+        </div>
+    </div>
+    {{end}}
+    <script>
+        var btn1 = document.querySelector('#green');
+        var btn2 = document.querySelector('#red');
+
+        btn1.addEventListener('click', function() {
+  
+            if (btn2.classList.contains('red')) {
+            btn2.classList.remove('red');
+            } 
+        this.classList.toggle('green');
+        
+        });
+
+        btn2.addEventListener('click', function() {
+        
+            if (btn1.classList.contains('green')) {
+            btn1.classList.remove('green');
+            } 
+        this.classList.toggle('red');
+        
+        });
+    </script>
+    
+    
+
+
+    {{if .IsAuthenticated}}
+
+
+<div class="">
+      <div id="comment-section">
+        <h2 class="white">Comments</h2>
+        <form action="/post?id={{.Merge.Post.ID}}" method="post" class="comment-form">
+            <label for="comment" class="white">Comment:</label>
+            <textarea name="comment" id="comment" required></textarea>
+            <!-- <input type="submit" value="Comment" class="click"> -->
+            <button type="submit" class="click">Post Comment</button>
+        </form>
+     
+      {{end}}
+        
+      {{if .Merge.Comments}}
+      <div id="comment-list">
+        <table>
+            <tr>
+                <th>Comment`s author</th>
+                <th>Comment</th>
+                <th>Created</th>
+                <th>Reactions</th>
+            </tr>
+        {{with .Merge}}
+            {{range.Comments}}
+                <tr>
+                    <td>{{.Author}}</td>
+                    <td>{{.CommentText}}</td>
+                    <td>{{humanDate .Created}}</td>
+                    <td>
+                    
+                            <form action="/post/comment" target="_self" method="post">
+                                <div>{{.LikesComment}} 
+                                    <button value="like {{.ID}} {{.PostId}}" name="comments" class="btn" id="green"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                                    {{.DislikesComment}}
+                                    <button  value="dislike {{.ID}} {{.PostId}}" name="comments" class="btn" id="red"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                                </div>
+                            </form>
+                        
+                    </td>
+                </tr>
+            {{end}}
+        {{end}}
+        </table>
+    </div>
+    {{end}}
+</div>
+</div>
+      
+<!-- likes -->
+<script src="https://use.fontawesome.com/fe459689b4.js"></script>
+
+  
+
+
+   
+
+</div>
+
+{{end}}

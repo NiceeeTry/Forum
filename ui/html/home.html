@@ -1,0 +1,109 @@
+{{template "base" .}}
+{{define "title"}}Home{{end}}
+{{define "main"}}
+
+<section id="home" class="min-h-49vh flex justify-start items-center black">
+    <div class="mx-5 md-mx-l5">
+    <h1 class="white fs-l3 lh-2 md-fs-xl1 md-lh-1 fw-900 ">Here is finally <br />FORUM</h1>
+    <!-- <div class="br-8 mt-10 inline-flex">
+    <input type="text" class="input-lg half bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 min-w-25vw br-r-0" placeholder="Email Address">
+    <button class="button-lg bg-indigo-lightest-20 indigo-lightest focus-white fw-300 fs-s3 mr-0 br-l-0">Get
+    Started</button>
+    </div>
+    <div class="white opacity-20 fs-s3 mt-3">No credit card required</span>
+    </div> -->
+    </div>
+    </section>
+
+    
+    <div class="cont">
+    <section class="relative bg-indigo-lightest-10">
+        <div id="slider-1">
+        <div class="p-10 md-p-l4 flex justify-center items-center flex-column text-center">
+        <h2 class="white fs-l3 fw-900">You may choose a category</h2>
+        <form action="/" method="post">
+            <div>
+                <tr>
+                    <th><input type='submit' value='Auto' name="Auto" class="mt-5 button bg-indigo-lightest-10 fs-m3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300"></th>
+                    <th><input type='submit' name="Bike" value='Bike' class="mt-5 button bg-indigo-lightest-10 fs-m3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300"></th>
+                    <th><input type='submit' name="Ship" value='Ship' class="mt-5 button bg-indigo-lightest-10 fs-m3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300"></th>
+                    <th><input type='submit' name="Track" value='Track' class="mt-5 button bg-indigo-lightest-10 fs-m3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300"></th>
+                    <th><input type='submit' name="Plane" value='Plane' class="mt-5 button bg-indigo-lightest-10 fs-m3 white no-underline hover-opacity-100 hover-scale-up-1 ease-300"></th>
+                </tr>
+            </div>
+        </form>
+        </div>
+        </div>
+        </section>
+   
+
+
+
+
+<!-- <h2>You may choose a category</h2>
+<form action="/" method="post">
+    <table>
+        <tr>
+            <th><input type='submit' value='Auto' name="Auto"></th>
+            <th><input type='submit' name="Bike" value='Bike'></th>
+            <th><input type='submit' name="Ship" value='Ship'></th>
+            <th><input type='submit' name="Track" value='Track'></th>
+            <th><input type='submit' name="Plane" value='Plane'></th>
+        </tr>
+    </table>
+</form> -->
+{{if .Posts}}
+<section class="py-l2 grid-container">
+    {{range .Posts}}
+
+    <div class="">
+    <div class="w-80pc md-w-100pc grid-item">
+        <a href="/post?id={{.ID}}">
+    <div class="br-8 p-5 m-5 bg-indigo-lightest-10 pointer hover-scale-up-1 ease-300">
+    <div class="inline-block bg-indigo indigo-lightest br-3 px-4 py-1 mb-10 fs-l12 uppercase">
+        ID: {{.ID}}</div>
+    <div class="indigo-lightest fw-600 fs-m1">
+        <div>Title: <span class="opacity-30">{{.Title}}</span></div>  
+        <div> Created: <span class="opacity-30">{{humanDate .Created}}</span> </div>
+        <div>Author: <span class="opacity-30">{{.Name}}</span></div>
+    </div>
+    <a href="/post?id={{.ID}}" class="mt-10 button bg-black fs-m1 white no-underline">Read</a>
+    </div>
+</a>
+    </div>
+
+
+
+
+
+    </div>
+    
+    {{end}}
+</section>
+    {{else}}
+        <h2 class="white text-center mt-5">There's nothing to see here... yet!</h2>
+    {{end}}
+</div>
+
+    <!-- <h2>Latest Posts</h2>
+    {{if .Posts}}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Created</th>
+                <th>ID</th>
+                <th>Created by</th>
+            </tr>
+            {{range .Posts}}
+            <tr>
+                <td><a href='/post?id={{.ID}}'>{{.Title}}</a></td>
+                <td>{{humanDate .Created}}</td>
+                <td>#{{.ID}}</td>
+                <td>{{.Name}}</td>
+            </tr>
+            {{end}}
+        </table>
+    {{else}}
+        <p>There's nothing to see here... yet!</p>
+    {{end}} -->
+{{end}}

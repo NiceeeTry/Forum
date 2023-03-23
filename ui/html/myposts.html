@@ -1,0 +1,59 @@
+{{template "base" .}}
+{{define "title"}}Home{{end}}
+{{define "main"}}
+<h2 class="white fs-l3 fw-900 text-center">My Posts</h2>
+<div class="cont">
+    {{if .Posts}}
+    <section class="py-l2 grid-container">
+        {{range .Posts}}
+    
+        <div class="">
+        <div class="w-80pc md-w-100pc grid-item">
+            <a href="/post?id={{.ID}}">
+        <div class="br-8 p-5 m-5 bg-indigo-lightest-10 pointer hover-scale-up-1 ease-300">
+        <div class="inline-block bg-indigo indigo-lightest br-3 px-4 py-1 mb-10 fs-l12 uppercase">
+            ID: {{.ID}}</div>
+        <div class="indigo-lightest fw-600 fs-m1">
+            <div>Title: <span class="opacity-30">{{.Title}}</span></div>  
+            <div> Created: <span class="opacity-30">{{humanDate .Created}}</span> </div>
+            <div>Author: <span class="opacity-30">{{.Name}}</span></div>
+        </div>
+        <a href="/post?id={{.ID}}" class="mt-10 button bg-black fs-m1 white no-underline">Read</a>
+        </div>
+    </a>
+        </div>
+    
+    
+    
+    
+    
+        </div>
+        
+        {{end}}
+    </section>
+    {{else}}
+    <h2 class="white text-center mt-5">There's nothing to see here... yet!</h2>
+    {{end}}
+</div>
+    <footer class="w-100pc  md-flex-row md-px-10 py-5 bg-black text-center white">Powered by <a href='https://golang.org/'>Go</a> in {{.CurrentYear}}</footer>
+    <!-- {{if .Posts}}
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Created</th>
+                <th>ID</th>
+                <th>Created by</th>
+            </tr>
+            {{range .Posts}}
+            <tr>
+                <td><a href='/post?id={{.ID}}'>{{.Title}}</a></td>
+                <td>{{humanDate .Created}}</td>
+                <td>#{{.ID}}</td>
+                <td>{{.Name}}</td>
+            </tr>
+            {{end}}
+        </table>
+    {{else}}
+        <p>There's nothing to see here... yet!</p>
+    {{end}}
+{{end}} -->
